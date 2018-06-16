@@ -8,13 +8,24 @@ namespace TechJobs.ViewModels
 {
     public class NewJobViewModel
     {
-        [Required]
-        public string Name { get; set; }
+        
 
-        [Required]
+        
         [Display(Name = "Employer")]
         public int EmployerID { get; set; }
 
+        [Display(Name = "Location")]
+        public string Location { get; set;  }
+        
+        [Display(Name = "Skill")]
+        public CoreCompetency CoreCompetency { get; set; }
+        
+        [Display(Name = "Postition Type")]
+        public PositionType PositionType { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
         // TODO #3 - Included other fields needed to create a job,
         // with correct validation attributes and display names.
 
@@ -31,11 +42,34 @@ namespace TechJobs.ViewModels
             foreach (Employer field in jobData.Employers.ToList())
             {
                 Employers.Add(new SelectListItem {
-                    Value = field.ID.ToString(),
+                    Value = field.ToString(),
                     Text = field.Value
                 });
             }
-
+            foreach (Location field in jobData.Locations.ToList())
+            {
+                Locations.Add(new SelectListItem
+                {
+                    Value = field.ToString(),
+                    Text = field.Value
+                });
+            }
+            foreach (PositionType field in jobData.PositionTypes.ToList())
+            {
+                PositionTypes.Add(new SelectListItem
+                {
+                    Value = field.ToString(),
+                    Text = field.Value
+                });
+            }
+            foreach (CoreCompetency field in jobData.CoreCompetencies.ToList())
+            {
+                CoreCompetencies.Add(new SelectListItem
+                {
+                    Value = field.ToString(),
+                    Text = field.Value
+                });
+            }
             // TODO #4 - populate the other List<SelectListItem> 
             // collections needed in the view
 
